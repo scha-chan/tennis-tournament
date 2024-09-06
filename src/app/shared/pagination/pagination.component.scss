@@ -1,0 +1,14 @@
+.pagination {
+    width: 100%;
+    margin: 30px; 
+    height: 38px;
+    position: relative;   
+    .float-buttons {
+        top: 0;
+        left: 50%;
+        margin-left:  -97px;
+        width: 194px;
+        z-index: 1;
+        position: absolute;
+    }
+}

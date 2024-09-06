@@ -1,0 +1,88 @@
+@import "../../..//assets/variables";
+
+:host::ng-deep {
+    .game-result {
+        margin-bottom: 30px;
+        .game-info {
+            padding: 15px;
+        }
+        .game-info-main {
+            max-width: 600px;
+            min-width: 100%;
+        }
+        .game-info-team {
+            width: 25%;
+            max-width: 199px;
+            img {
+                max-width: 100%;
+            }
+        }
+        .group-sm { 
+            width: 100%;
+        }       
+        .game-info-middle {
+            margin: 0;
+        } 
+    }    
+}
+
+.desafiar {   
+    tr {
+        cursor: pointer;
+        td:first-child {
+            width: 25px;
+        }
+        td {
+            vertical-align: middle;
+        }
+    }    
+    tr {
+        border-right: 2px solid #fff;
+        border-left: 2px solid #fff;
+    }
+    .selected {
+        border: 2px solid $theme-color;
+        background:lighten($theme-color,40);
+    }
+    .disabled, &.disabled {
+        pointer-events: none;
+        opacity: 0.5;
+        img {
+            filter: grayscale(100%);
+        }
+        color: #666;
+    }
+}
+
+.pontuacao {
+    thead {
+        th:first-child {
+            text-align: right;
+        }
+        th {
+            text-align: center;
+        }
+    }
+    td:first-child {
+        width: 50%;
+    }
+    td {
+        width: 15%;
+    }
+    input {
+        text-align: center;
+    }
+}
+
+textarea {
+    height: 80%;
+}
+.obs {
+    height: 100%;
+}
+.form-group + .form-group {
+    height: auto;
+    textarea {
+        height: 80%;
+    }
+}

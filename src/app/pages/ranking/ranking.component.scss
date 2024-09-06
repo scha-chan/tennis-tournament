@@ -1,0 +1,24 @@
+:host::ng-deep {
+    .table-roster {
+        tr {
+            td:nth-child(1), td:nth-child(2)  {
+                font-size: 18px;
+                color: #35ad79;
+            }  
+        }  
+        td {
+            color : #151515;
+        }   
+        td {
+            img {
+                margin-right: 5px;
+                width: 45px;
+                height: 45px;
+            }
+        } 
+        td:last-child, td:nth-child(10), td:nth-child(12), 
+        th:last-child, th:nth-child(5), th:nth-child(6) {
+            text-align: center;
+        }  
+    }
+}

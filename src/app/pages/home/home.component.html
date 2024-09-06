@@ -1,0 +1,107 @@
+<div class="container"> 
+  <div class="row row-50">
+    <div class="col-lg-8">
+        <game-title title="Próxima Partida"  *ngIf="nextDesafio"></game-title>
+        <game-placar [desafio]="nextDesafio" *ngIf="nextDesafio"></game-placar>
+      
+        <game-title title="Ranking"></game-title>
+      
+        <div class="row row-30">
+            <div class="col-sm-6">
+              <div class="table-custom-responsive">
+                <table class="table-custom table-roster with-btn">
+                  <thead>
+                    <tr>
+                      <th colspan="3">Top 10 da última semana</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Pos.</td>
+                      <td>Jogador</td>
+                      <td>Classe</td>
+                    </tr>
+                    <tr *ngFor="let rank of ranking">
+                      <td>{{ rank.posicao }}º</td>
+                      <td>{{ rank.usuario.nome }}</td>
+                      <td>{{ rank.usuario.classe_nome }}</td>
+                    </tr>  
+                    <tr>                 
+                        <td colspan="3">
+                          <a class="button button-sm button-primary btn-sm btn-block" routerLink="/ranking">ver todos</a>
+                        </td>                  
+                      </tr>           
+                  </tbody>
+                </table>
+              </div>
+            </div>
+      
+            <div class="col-sm-6">
+              <div class="table-custom-responsive">
+                <table class="table-custom table-roster team2-blue">
+                  <thead>
+                    <tr>
+                      <th colspan="3">Top 10 vencedores</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Pos.</td>
+                      <td>Jogador</td>
+                      <td>Vitórias</td>
+                    </tr>
+                    <tr *ngFor="let rank of ranking; index as pos">
+                      <td class="text-center">{{ pos+1 }}º</td>
+                      <td>{{ rank.usuario.nome }}</td>
+                      <td>{{ rank.vitorias }}</td>
+                    </tr>  
+                    <tr>
+                        <td colspan="3">                    
+                        </td>                  
+                      </tr>           
+                  </tbody>
+                </table>
+              </div>
+            </div>      
+          </div>
+    </div>
+    <div class="col-lg-4">        
+        <game-title title="Publicidade" *ngIf="publicidadeSidebar"></game-title>
+        <div class="awards-carousel">
+            <div class="awards-item"> 
+                <div class="awards-item-main">
+                  <h4 class="awards-item-title"><span class="text-accent">Melhor</span>Jogador
+                  </h4>
+                  <div class="divider"></div>
+                  <h5 class="awards-item-time">2020</h5>
+                </div>
+                <div class="awards-item-aside"> <img src="assets/images/taca.png" alt="" width="67" height="147">
+                </div>
+            </div>    
+        </div>       
+        
+    
+        <game-title title="Status"></game-title>
+        <div class="table-custom-responsive">
+          <table class="table-custom table-custom-bordered table-team-statistic">
+            <tbody>
+              <tr>
+              <td>
+                <p class="team-statistic-counter">{{ numeroJogadores }}</p>
+                <p class="team-statistic-title">Jogadores Ativos</p>
+              </td>
+              <td>
+                <p class="team-statistic-counter">{{ numeroJogos }}</p>
+                <p class="team-statistic-title">Jogos Realizados</p>
+              </td>
+            </tr>           
+          </tbody>
+        </table>
+        </div>
+        
+        <game-title title="Últimos Resultados" *ngIf="desafios && desafios.length"></game-title>  
+        <game-result [desafio]="desafio" *ngFor="let desafio of desafios | slice:0:2"></game-result>
+
+    </div>
+  </div>
+</div>

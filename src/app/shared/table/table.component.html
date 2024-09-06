@@ -1,0 +1,22 @@
+<table class="table-striped  table-roster usuario" *ngIf="hasRegistros">
+    <thead>
+      <tr>
+        <th *ngFor="let head of header" (click)="sortTable(head)" [ngClass]="loadIcon(head)">{{ head.nome }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of rows">
+        <ng-container  *ngFor="let head of header">
+            <td  class="title-mobile" *ngIf="!head.isButton">{{ head.nome }}</td>
+            <td  [ngClass]="classTable(head)">
+                <span [innerHTML]="getText(head, item)"></span>   
+                <span *ngIf="head.mask && item[head.alias]">{{ item[head.alias] | mask: head.mask }}</span>    
+                <input *ngIf="head.isCheckbox"  type="checkbox" (click)="clickElement(head, item)" [checked]="item[head.alias]" class="swap" />   
+                <button *ngIf="head.isButton" (click)="clickElement(head, item)" [ngClass]="head.class" class="btn" >{{ head.alias }}</button>          
+            </td>
+        </ng-container >       
+      </tr>
+    </tbody>
+  </table>
+
+  <p *ngIf="!hasRegistros">Não há registros para serem exibidos.</p>

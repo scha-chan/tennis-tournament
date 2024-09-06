@@ -1,0 +1,34 @@
+<div class="container">
+    <game-title title="Usuários" rota="jogador/cadastro"></game-title>  
+    <section *ngIf="usuarios && usuarios.length">
+        <div class="row">
+          <div class="col-md-4">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Buscar pelo usuário"  [(ngModel)]="filter.usuario" (keyup)="filtrar()">
+              </div>
+            </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <select name="situacao" [(ngModel)]="filter.situacao" (change)="filtrar()" class="form-control" [disabled]="!situacoes && situacoes.length < 2">
+                <option  value="-1" selected>Situação</option>                  
+                <option *ngFor="let situacao of situacoes" [value]="situacao.id">{{ situacao.nome }}</option>
+              </select>         
+            </div>
+          </div>
+          <div class="col-md-3">
+              <div class="form-group">
+                <select name="classe" [(ngModel)]="filter.classe" (change)="filtrar()" class="form-control" [disabled]="!classes && classes.length < 2">
+                  <option  value="0" selected>Classe</option>
+                  <option *ngFor="let classe of classes" [value]="classe.id">{{ classe.nome }}</option>
+                </select>         
+              </div>
+            </div>          
+        </div>
+      </section>
+</div>
+<div class="container-fluid">
+
+  <game-table [header]="tableHeader" [rows]="usuariosPaginated"  (sort)="sortTable($event)" (action)="clickTable($event)" 
+  ></game-table>
+  <game-pagination [total]="usuarios.length" [limit]="this.limit"  (callback)="paginate($event)"></game-pagination>
+</div>

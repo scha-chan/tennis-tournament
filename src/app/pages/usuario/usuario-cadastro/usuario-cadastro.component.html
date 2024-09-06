@@ -1,0 +1,140 @@
+<div class="container">
+    <game-title title="Jogador" ></game-title> 
+    <form #formUsuario="ngForm" [ngFormOptions]="{updateOn: 'blur'}" 
+    enctype='multipart/form-data' method="POST" >
+       <div class="row">        
+        <div class="col-8 col-md-6 col-lg-6" *ngIf="id || isAdmin">
+                <div class="form-group">
+                    <label for="avatar">Avatar:</label>
+                    <input type="file" name="avatar" #avatar="ngModel"  [(ngModel)]="usuario.avatar" 
+                    class="form-control" (change)="onFileSelect($event.target.files)">
+                </div>
+        </div>
+        <div class="col-4 col-md-6 col-lg-6" *ngIf="id || isAdmin">
+            <img [src]="usuario.avatar_img" class="img-avatar" *ngIf="usuario.avatar" />
+        </div>
+         <div class="col-md-6 col-lg-6">
+            <div class="form-group">
+                <label>Nome:</label>
+                <input type="text" name="nome" #nome="ngModel" class="form-control" [(ngModel)]="usuario.nome" required minlength="4" >
+                <div *ngIf="nome.invalid && (nome.dirty || nome.touched)" class="text-danger">
+                  <div *ngIf="nome.errors.required">
+                    Obrigatório.
+                  </div>
+                  <div *ngIf="nome.errors.minlength">
+                    Deve ter no mínimo 4 caracteres.
+                  </div>                
+              </div>
+            </div>
+         </div>
+         <div class="col-md-6 col-lg-6">
+            <div class="form-group">
+                <label>Email:</label>
+                <input type="text" name="email" #email="ngModel"  class="form-control" [(ngModel)]="usuario.email" required email >
+                <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
+                    <div *ngIf="email.errors.required">
+                      Obrigatório.
+                    </div>
+                    <div *ngIf="email.errors?.email"> 
+                        Email inválido.
+                   </div>          
+                </div>
+            </div>
+         </div>
+         <div class="col-md-6 col-lg-4">
+            <div class="form-group">
+                <label>Classe: </label>
+                <select  name="classe"  class="form-control" #classe="ngModel" [(ngModel)]="usuario.classe" required 
+                [disabled] = "!isAdmin && id">
+                  <option *ngFor="let item of classes" [value]="item.id">{{ item.nome }}</option>                 
+                </select>
+                <div *ngIf="classe.invalid && (classe.dirty || classe.touched)" class="text-danger">
+                    <div *ngIf="classe.errors.required">
+                      Obrigatório.
+                    </div>                                    
+                </div>
+            </div>
+         </div>  
+         <!-- <div class="col-md-6 col-lg-4">
+            <div class="form-group">
+                <label>Código:</label>
+                <input type="text" name="codigo" #codigo="ngModel" class="form-control" [(ngModel)]="usuario.codigo" >
+            </div>
+         </div> -->
+         <div class="col-md-6 col-lg-4">
+            <div class="form-group">
+                <label>Telefone:</label>
+                <input type="text" name="telefone" #telefone="ngModel"  class="form-control" [(ngModel)]="usuario.telefone" mask="(00) 0000-0000">
+            </div>
+         </div>
+         <div class="col-md-6 col-lg-4">
+            <div class="form-group">
+                <label>Celular:</label>
+                <input type="text" name="celular" #celular="ngModel"  class="form-control" [(ngModel)]="usuario.celular" mask="(00) 00000-0000">
+            </div>
+         </div>
+         <div class="col-md-6 col-lg-4" *ngIf="isAdmin">
+            <div class="form-group">
+                <label>Perfil:</label>
+                <select  name="tipo"  class="form-control" #tipo="ngModel" [(ngModel)]="usuario.tipo" required >
+                  <option value="A">Administrador</option>
+                  <option value="J">Jogador</option>
+                </select>
+                <div *ngIf="tipo.invalid && (tipo.dirty || tipo.touched)" class="text-danger">
+                    <div *ngIf="tipo.errors.required">
+                      Obrigatório.
+                    </div>                                    
+                </div>
+            </div>
+         </div>         
+         <div class="col-md-6 col-lg-4">
+            <div class="form-group">
+                <label>Data nascimento:</label>
+                <input type="text" name="dataNascimento" #dataNascimento="ngModel" class="form-control" 
+                [(ngModel)]="usuario.dataNascimento" mask="00/00/0000">
+                <div *ngIf="invalidDate" class="text-danger">
+                    Data inválida.                                        
+                </div>
+            </div>          
+         </div>     
+         <div class="col-md-6 col-lg-4" *ngIf="id || isAdmin">
+            <div class="form-group">
+                <label>Situação: </label>
+                <select  name="ativo"  class="form-control" #ativo="ngModel" [(ngModel)]="usuario.ativo" required 
+                [disabled] = "!isAdmin && (usuario.ativo == 0 || usuario.ativo == 2)">
+                  <option *ngFor="let item of situacoes" [value]="item.id">{{ item.nome }}</option>                 
+                </select>
+                <div *ngIf="ativo.invalid && (ativo.dirty || ativo.touched)" class="text-danger">
+                    <div *ngIf="ativo.errors.required">
+                      Obrigatório.
+                    </div>                                    
+                </div>
+            </div>
+         </div>  
+         <div class="col-md-6 col-lg-4" *ngIf="!id">
+            <div class="form-group">
+                <label>Senha:</label>
+                <input type="password" name="password" #password="ngModel"  class="form-control" [(ngModel)]="usuario.password">
+                <div *ngIf="invalidPassword" class="text-danger">
+                    Obrigatório.                                        
+                </div>
+            </div>
+         </div>
+         <div class="col-md-6 col-lg-4" *ngIf="!id">
+            <div class="form-group">
+                <label>Confirmar senha:</label>
+                <input type="password" name="password_confirmation" #passwordConfirm="ngModel"  class="form-control" 
+                  [(ngModel)]="usuario.password_confirmation" >
+                <div *ngIf="invalidPassword" class="text-danger">
+                    As Senhas devem ser iguais.                                        
+                </div>
+            </div>
+         </div>
+         
+       </div>
+       <div class="text-right">
+          <button class="btn btn-secondary" (click)="goBack()">Cancelar</button>
+          <button class="btn btn-success " (click)="submitForm()" [disabled]="!formUsuario.valid">Salvar</button>
+       </div>       
+    </form>
+</div>

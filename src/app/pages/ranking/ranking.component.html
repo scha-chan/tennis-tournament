@@ -1,0 +1,24 @@
+<div class="container">
+  <game-title title="Ranking"></game-title>  
+  <section >
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <select name="periodo" [(ngModel)]="periodo" (change)="buscarRanking()" class="form-control" [disabled]="periodos.length < 2">
+            <option *ngFor="let periodo of periodos"  [ngValue]="periodo">
+              {{ periodo.dataInicio.format('DD/MM/YYYY') }} - {{ periodo.dataFim.format('DD/MM/YYYY') }}
+            </option>
+          </select>         
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Buscar pelo jogador"  [(ngModel)]="jogador" (keyup)="paginate(page)">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <game-table [header]="tableHeader" [rows]="rankingPaginated"  (sort)="sortTable($event)" ></game-table>
+  <game-pagination [total]="total" [limit]="this.limit"  (callback)="paginate($event)"></game-pagination>
+</div>

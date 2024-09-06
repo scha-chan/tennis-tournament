@@ -1,0 +1,89 @@
+@import "~bootstrap/scss/bootstrap";
+@import "~font-awesome/css/font-awesome.css";
+@import "assets/variables";
+
+@import "assets/template.css";
+
+footer {
+    text-align: center;
+    border-top: 1px solid #e1e1e1;
+    margin-top: 30px;
+    padding: 15px;
+}
+
+.rd-nav-link {
+    cursor: pointer;
+}
+
+.team-yellow thead th {
+	background: darken($amarelo,10);
+}
+
+.img-avatar {
+    height: 70px;
+    width: 70px;
+    object-fit: cover;
+    background-color: $theme-color;
+    border: none;
+}
+.img-left {
+    margin-right: 5px;
+}
+table {
+    img {
+        height: 50px;
+        width: 50px;
+        object-fit: cover;
+        border: none;
+    }
+}
+
+.btn + .btn {
+    margin-left: 10px;
+}
+
+.action {
+    margin-bottom: 30px;
+}
+
+$height: 38px;
+
+.swap {
+    position: relative;
+    width: 80px;
+    height: $height;
+    top: 2px;
+    &:before {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 0px;
+        z-index: 1;
+        background-color: #ccc;
+        width: 80px;
+        height: $height;
+        border-radius: 25px;
+        border: 1px solid #000000;
+    }
+    &:after {
+        content: '';
+        position: absolute;
+        left: 3px;
+        right: unset;
+        top: 2px;
+        z-index: 2;
+        background-color: darken(#ccc, 25);
+        width: $height - 4;
+        height: $height - 4;
+        border-radius:25px;
+    }
+    &:checked {      
+        &:after {
+            right: 3px;
+            left: unset;
+            background-color:#000;
+        }
+    }
+}
+
+

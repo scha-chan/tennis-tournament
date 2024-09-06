@@ -1,0 +1,6 @@
+<div class="pagination" *ngIf="hidePagination">
+  <div class="float-buttons">
+      <button class="btn btn-secondary" (click)="loadMore()" *ngIf="hideLoadMore">ver mais</button>
+      <button class="btn btn-secondary" (click)="loadLess()" *ngIf="hideLoadLess">ver menos</button>
+  </div>  
+</div>

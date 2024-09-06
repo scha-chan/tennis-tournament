@@ -1,0 +1,12 @@
+button.close {
+    &:focus {
+        border: none;
+        outline: none;
+    }
+}
+.modal-header {
+    border-bottom: none;
+}
+.modal-footer {
+    border-top: none;
+}

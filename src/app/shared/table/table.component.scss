@@ -1,0 +1,123 @@
+@import "~bootstrap/scss/bootstrap";
+.title-mobile {
+    display: none 
+}
+.table-roster {
+    td:nth-child(1), th:nth-child(1), td:nth-child(2) {
+        text-align: center;
+        width: 5%;
+        max-width: 80px; 
+    }
+    td {
+        vertical-align: middle;
+        padding: 10px;
+    }
+    .is-btn {
+        width: 4%; 
+}
+    .is-btn + .is-btn {
+        padding-left: 0px;
+    }
+    button {
+        text-transform: uppercase;
+        font-size: 13px;
+    }     
+    thead {
+        th {
+            padding: 0 10px;
+        }
+    }
+}
+
+.icon {
+    cursor: pointer;
+    position: relative;        
+    &.asc {
+        &:after {
+            margin-left: 5px;
+            content: "\f0dd";
+            font-family: FontAwesome;
+        }
+    }
+    &.desc {
+        &:after {
+            margin-left: 5px;
+            content: "\f0de" ;
+            font-family: FontAwesome;
+        }
+    }
+}
+.table-roster {  
+    width: 100%; 
+    max-width: unset;
+    tbody {
+        tr:first-child {
+            color : #151515;
+        }
+    }
+}
+
+@media (max-width: 767.98px) { 
+    .title-mobile {
+        display: block;
+    }
+    .title-mobile.is-btn {
+        display: none;
+    }
+    
+    .table-roster {
+        button {
+            padding-top: 1.5%;
+            width: 100%;
+        } 
+        thead {
+            display: none;
+        }        
+        tbody {
+            tr {
+                td {
+                    float: left;                    
+                    display: flex;
+                    width: 48%;
+                    font-size: 16px;  
+                    max-width: unset;                   
+                }
+                td:nth-child(odd) {
+                    width: 33%;
+                    font-weight: bold;
+                    color: #35ad79;
+                }
+                td:nth-child(even) {
+                    width: 65%;
+                    overflow: hidden;
+                }
+                td.is-btn {
+                    width: 49%;
+                }   
+                              
+            }
+        }
+        &.usuario {
+            tbody {
+                tr {
+                    td:nth-child(7), td:nth-child(8) {
+                        display: none;
+                    }  
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 375px) { 
+    .table-roster {        
+        tbody {
+            tr {          
+                td:nth-child(even) {
+                    width: 58%;
+                    overflow: hidden;
+                }                              
+            }
+        }
+    }
+}

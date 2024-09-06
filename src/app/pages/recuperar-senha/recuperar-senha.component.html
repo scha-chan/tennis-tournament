@@ -1,0 +1,54 @@
+<div class="container">    
+    <form >           
+        <game-title title="Recuperar sua senha" *ngIf="!hasCode" ></game-title>  
+        <div class="row" *ngIf="!hasCode">
+          <div class="col-md-8">
+              <div class="form-group">
+                <label>Informe seu email:</label>
+                <input name="email"  class="form-control" [(ngModel)]="email">
+                <div *ngIf="invalidEmail" class="text-danger">
+                    Obrigatório.                                        
+                </div>
+              </div>
+          </div>
+          <div class="col-md-4">
+              <div class="form-group">
+                <label>&nbsp;</label>
+                <button class="btn btn-success d-block" (click)="enviarEmail()" [disabled]="loading" >Enviar</button>
+              </div>
+          </div>
+        </div>
+      
+        <div class="box" *ngIf="hasCode">
+          <game-title title="Informe uma nova senha" ></game-title> 
+          <div class="row">
+            <div class="col-md-4 col-lg-4" >
+              <div class="form-group">
+                  <label>Nova senha:</label>
+                  <input type="password" name="password" #password="ngModel"  class="form-control" [(ngModel)]="senhas.password">                  
+                  <div *ngIf="invalidLengthPassword" class="text-danger">
+                    A senha deve ter no mínimo 8 caracteres.                                        
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 col-lg-4">
+                <div class="form-group">
+                    <label>Confirmar senha:</label>
+                    <input type="password" name="password_confirmation" #passwordConfirm="ngModel"  class="form-control" 
+                      [(ngModel)]="senhas.password_confirmation" >
+                    <div *ngIf="invalidPassword" class="text-danger">
+                        As Senhas devem ser iguais.                                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-4">
+              <div class="form-group">
+                  <label>&nbsp;</label>
+                  <button class="btn btn-success d-block" (click)="salvarSenha()" [disabled]="loading" >Salvar</button>
+                </div>
+            </div>
+          </div>
+        </div>
+        
+    </form>  
+</div>

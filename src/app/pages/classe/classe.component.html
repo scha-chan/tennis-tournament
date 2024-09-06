@@ -1,0 +1,6 @@
+<div class="container">
+  <game-title title="Classes" rota="classe/cadastro"></game-title>  
+  <game-table [header]="tableHeader" [rows]="classesPaginated" 
+              (sort)="sortTable($event)" (action)="clickTable($event)" 
+  ></game-table> 
+</div>

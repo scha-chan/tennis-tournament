@@ -1,0 +1,76 @@
+@import "../../assets/variables";
+
+header {
+    margin-bottom: 30px;
+    .form-inline {
+        width: 100%;
+        justify-content: flex-end;
+    }
+    .list-group {
+        width: 100%;
+        border-radius: 0;
+        .list-group-item {
+            background: #2c2d31;
+            color: #FFF;
+            a {
+                color: #FFF;
+            }
+        }
+    }
+    .menu-flutuante {
+        position: absolute;
+        width: 100%;
+        height: auto;
+        top: 50px;
+        left: 0%;
+        z-index: 2;
+        hr {
+            margin-top: 0;
+        }
+    }
+    .rd-navbar-search {
+        .recuperar-senha {
+            position: absolute;
+            right: 187px;
+            top: 1.2px;       
+            font-size: 22px; 
+            color: #35363c;
+            &:hover {
+                color: #111;
+            }
+        }
+    }
+    .rd-navbar-dark .rd-navbar-static.rd-navbar-classic .rd-nav-link {
+        .destaque {
+            color: $amarelo;
+        }
+    }
+    
+}
+@media (min-width: 576px) and (max-width: 991.98px)  { 
+    .rd-navbar-sidebar .rd-navbar-brand img {   
+        max-width: 150px;   
+    }
+    .form-inline {
+        input {
+            width: 30%;
+        }
+    }
+    header {
+        .rd-navbar-search {
+            .recuperar-senha {
+                top: 9px;
+            }
+        }
+    }    
+}
+
+@media (max-width: 376px)  {
+    .btn + .btn {
+        margin-left: 0;
+    }
+    .btn  {
+        display: block;
+        width: 100%;
+    }
+}

@@ -1,0 +1,28 @@
+<div class="container">
+  <game-title title="Desafios" [rota]="podeDesafiar ? 'desafio/cadastro' : ''" btnText="Desafiar"></game-title>  
+  <section>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <select name="periodo" [(ngModel)]="periodo" (change)="buscarDesafio()" class="form-control" 
+          [disabled]="periodos.length < 2 || loading">
+            <option *ngFor="let periodo of periodos" [ngValue]="periodo">
+              {{ periodo.dataInicio.format('DD/MM/YYYY') }} - {{ periodo.dataFim.format('DD/MM/YYYY') }}
+            </option>
+          </select>         
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Buscar pelo jogador"  [(ngModel)]="jogador" (keyup)="filterJogador()">
+        </div>
+      </div>
+    </div>
+  </section>
+  <p *ngIf="!desafiosPaginated || !desafiosPaginated.length" class="text-center">Não há desafios para essa semana, desafie um jogador!</p>
+  <div class="row">    
+    <div class="col-md-6" *ngFor="let desafio of desafiosPaginated">
+      <game-placar [desafio]="desafio" (action)="clickTable($event)" [edit]="true"></game-placar>
+    </div>
+  </div>
+</div>

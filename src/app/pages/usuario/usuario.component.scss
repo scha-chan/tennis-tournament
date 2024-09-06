@@ -1,0 +1,19 @@
+@media (min-width: 576px) and (max-width: 991.98px)  { 
+    :host::ng-deep {
+        .table-roster {  
+             td:nth-child(7), td:nth-child(8),  td:nth-child(9), td:nth-child(10),  td:nth-child(11), td:nth-child(12),
+             th:nth-child(4), th:nth-child(5), th:nth-child(6) {
+                display: none;
+             }
+        }
+    }
+}
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    :host::ng-deep {
+        .table-roster {  
+             td:nth-child(7), td:nth-child(8), th:nth-child(4) {
+                display: none;
+             }
+        }
+    }
+ }

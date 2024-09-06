@@ -1,0 +1,23 @@
+<div class="container">
+  <game-title title="Resultados"></game-title>
+  <section>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <!-- <label>Período</label> -->
+          <select name="periodo" [(ngModel)]="periodo" (change)="filterPeriodo()" class="form-control" [disabled]="periodos.length < 2">
+            <option *ngFor="let periodo of periodos" [ngValue]="periodo">
+              {{ periodo.dataInicio.format('DD/MM/YYYY') }} - {{ periodo.dataFim.format('DD/MM/YYYY') }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </section>
+  <p *ngIf="!desafios || !desafios.length">Não há jogos finalizados nessa semana.</p>
+  <div class="row">
+    <div class="col-md-6 col-lg-4" *ngFor="let desafio of desafios">     
+      <game-result [desafio]="desafio"></game-result>
+    </div>
+  </div>
+</div>

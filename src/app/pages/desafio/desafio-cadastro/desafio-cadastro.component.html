@@ -1,0 +1,71 @@
+<div class="container">
+    <form #formDesafio="ngForm" [ngFormOptions]="{updateOn: 'blur'}" >    
+        <game-title title="Desafio" ></game-title>  
+       <div class="row">
+         <div class="col-md-6 col-lg-6">
+            <p>Selecione um jogador para desafiar:</p>
+           <input type="hidden" name="desafiado" #desafiado="ngModel" [(ngModel)]="desafio.desafiado" />      
+            <p *ngIf="invalidDesafiado" class="text-danger">
+                É obrigatório selecionar um jogador.                                
+            </p>     
+            <table class="table desafiar " [ngClass]="currentUser && desafio.desafiado && currentUser.id == desafio.desafiado.id ? 'disabled' : ''">                
+                <tbody>
+                    <tr *ngFor="let user of usuarios" (click)="selecionarDesafiado(user)" [ngClass]="getClass(user)" >
+                        <td>{{ user.posicao }}º</td>
+                        <td [innerHTML]="user.user_img"></td>                                                    
+                    </tr>                    
+                </tbody>
+            </table>  
+         </div>
+         <div class="col-md-6 col-lg-6">            
+            <div class="form-group"  *ngIf="id">
+                <label>Realizado em:</label>
+                <input type="text" name="dataDesafio" #dataDesafio="ngModel" class="form-control" 
+                [(ngModel)]="desafio.dataDesafio" mask="00/00/0000 00:00" placeholder="00/00/0000 00:00" >
+                <div *ngIf="invalidDate" class="text-danger">
+                    Data inválida.                                        
+                </div>                
+            </div>              
+            <div class="form-group obs">
+                <label>Observação:</label>
+                <textarea  name="observacao" #observacao="ngModel"  class="form-control" [(ngModel)]="desafio.observacao" ></textarea>
+            </div>    
+    
+            <game-title title="Pontuação" *ngIf="desafio.id"></game-title>  
+
+            <div class="row pontuacao" *ngIf="desafio.id">
+                <div class="col-md-12">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Sets:</th>
+                                <th *ngFor="let partida of partidas; index as key" >{{ partida }}</th>                              
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td [innerHTML]="desafio.desafiante.user_img"></td>
+                                <td *ngFor="let ponto of pontosDesafiante; index as key" >                                       
+                                    <input type="text" name="pontos{{ pontosDesafiante[key].id }}" [(ngModel)] ="pontosDesafiante[key].pontos" 
+                                        class="form-control" [tabindex]="tabIndexDesafiante[key]" >
+                                </td>                              
+                            </tr>
+                            <tr>
+                                <td [innerHTML]="desafio.desafiado.user_img"></td>
+                                <td *ngFor="let ponto of pontosDesafiado; index as key" >                                   
+                                    <input type="text" name="pontos{{ pontosDesafiado[key].id }}" [(ngModel)] ="pontosDesafiado[key].pontos"  
+                                        class="form-control" [tabindex]="tabIndexDesafiado[key]">
+                                </td>                              
+                            </tr>
+                        </tbody>
+                    </table>   
+                </div>     
+            </div>     
+        </div>  
+        </div>
+        <div class="text-right">
+            <button class="btn btn-secondary" (click)="goBack()">Cancelar</button>
+            <button class="btn btn-success " (click)="submitForm()" [disabled]="loading">Salvar</button>
+         </div>  
+    </form>
+</div>

@@ -1,0 +1,90 @@
+
+<header class="section page-header rd-navbar-dark">
+  <div class="rd-navbar-wrap">
+    <nav class="rd-navbar rd-navbar-classic rd-navbar-original rd-navbar-static" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed" data-md-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-fixed" data-lg-device-layout="rd-navbar-fixed" data-xl-layout="rd-navbar-static" data-xl-device-layout="rd-navbar-static" data-xxl-layout="rd-navbar-static" data-xxl-device-layout="rd-navbar-static" data-lg-stick-up-offset="166px" data-xl-stick-up-offset="166px" data-xxl-stick-up-offset="166px" data-lg-stick-up="true" data-xl-stick-up="true" data-xxl-stick-up="true">
+      
+      <div class="rd-navbar-panel d-block d-md-none" (click)="$event.stopPropagation()">
+        <div class="row">
+            <div class="col-4">
+                <button class="rd-navbar-toggle toggle-original" (click)="toogleMenu()" [ngClass]="activeMenu ? 'active' : ''"><span></span></button>   
+            </div>
+            <div class="col-8 text-right d-flex justify-content-end align-items-center">
+                <a class="brand"  routerLink="/">
+                  <img class="brand-logo " src="assets/images/logo.webp" alt="" width="150">
+                </a>
+            </div>
+        </div>
+        <div class="rd-navbar-main" *ngIf="activeMenu">
+          <div class=" menu-flutuante rd-navbar-darker">
+            <ul class="rd-navbar-nav list-group">     
+                <li class="list-group-item list-group-item-dark"  *ngFor="let menu of menus"  >
+                  <a class=""  [routerLink]="menu.link" (click)="toogleMenu()">{{ menu.nome }}</a>
+                </li>
+                <li class="list-group-item list-group-item-dark" *ngIf="currentUser">
+                  <a class="" (click)="sair()"  >Sair</a>
+                </li>   
+                <li class="list-group-item list-group-item-dark"  *ngIf="!currentUser">
+                    <hr>
+                  Acessar a área restrita
+                  
+                    <form class="form my-2 my-lg-0" *ngIf="!currentUser"> 
+                      <div class="form-group">
+                          <input class="form-control" type="text" name="loginEmail" [(ngModel)]="login.email" placeholder="Email" aria-label="Email">
+                      </div>                
+                      <div class="form-group">                        
+                        <input class="form-control" type="password"  name="loginSenha" [(ngModel)]="login.password"  placeholder="Senha" aria-label="Senha">
+                      </div>
+                        <button class="btn btn-outline-warning my-2 my-sm-0" (click)="logar()" [disabled]="loading">Entrar</button>
+                        <a class="btn btn-outline-warning my-2 my-sm-0" [routerLink]="['/jogador/cadastro']" >Cadastrar</a>
+                        <a [routerLink]="['/recuperar-senha']" class="btn btn-outline-warning my-2 my-sm-0">Recuperar Senha</a>
+                    </form>
+                </li>
+            </ul>  
+          </div>
+        </div>
+             
+      </div>
+      
+      <div class="rd-navbar-main toggle-original-elements d-none d-md-block">
+
+          <div class="rd-navbar-main-top">
+            <div class="rd-navbar-main-container container">
+              <!-- RD Navbar Brand-->
+              <div class="rd-navbar-brand"><a class="brand"  routerLink="/">
+                <img class="brand-logo " src="assets/images/logo.webp" alt="ATBV" >
+              </a>
+              </div>                
+              <!-- RD Navbar Search-->
+              <div class="rd-navbar-search toggle-original-elements senha">                
+                <form class="form-inline my-2 my-lg-0" *ngIf="!currentUser">                 
+                    <input class="form-control mr-sm-2" type="text" name="loginEmail" [(ngModel)]="login.email" placeholder="Email" aria-label="Email">
+                    <input class="form-control mr-sm-2" type="password"  name="loginSenha" [(ngModel)]="login.password"  placeholder="Senha" aria-label="Senha">
+                    <button class="btn btn-outline-warning my-2 my-sm-0" (click)="logar()" [disabled]="loading">Entrar</button>
+                    <a class="btn btn-outline-warning my-2 my-sm-0" [routerLink]="['/jogador/cadastro']" >Cadastrar</a>
+                    <a [routerLink]="['/recuperar-senha']" class="recuperar-senha"><i class="fa fa-question-circle"></i></a>
+                </form>
+                <div *ngIf="currentUser" class="text-right w-100">Bem vindo, {{ currentUser.nome }}!</div>
+              </div>
+            </div>
+          </div>
+
+        <div class="rd-navbar-main-bottom rd-navbar-darker">
+            <div class="rd-navbar-main-container container">
+              <ul class="rd-navbar-nav">     
+                  <li class="rd-nav-item" >
+                      <a class="rd-nav-link" [routerLink]="['/']" >Home</a>
+                  </li>  
+                  <li class="rd-nav-item"  *ngFor="let menu of menus" >
+                    <a class="rd-nav-link"  [routerLink]="menu.link" [innerHTML]="menu.nome" ></a>
+                  </li>
+                  <li class="rd-nav-item" >
+                    <a class="rd-nav-link" (click)="sair()" *ngIf="currentUser" >Sair</a>
+                  </li>   
+              </ul>  
+          </div>
+        </div>
+
+      </div>
+    </nav>
+  </div>
+</header>

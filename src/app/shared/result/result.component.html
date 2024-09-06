@@ -1,0 +1,103 @@
+<article class="game-result game-result-classic" >
+    <div class="game-result-main">
+      <a class="game-result-team game-result-team-first" [routerLink]="'/perfil/'+desafio.desafiante.id">
+        <figure class="game-result-team-figure game-result-team-figure-big"><img src="{{ desafio.desafiante.avatar_img }}" alt="" width="75" height="75">
+        </figure>
+        <div class="game-result-team-name">{{ desafio.desafiante.nome }}</div>
+        <div class="game-result-team-country">{{ desafio.desafiante.classe_nome }}</div>
+      </a>
+      <div class="game-result-middle">
+
+        <ng-container *ngIf="desafio.vitorias_desafiante">
+            <div class="game-result-score-wrap">
+              <div class="game-result-score" 
+                [ngClass]="desafio.vitorias_desafiante > desafio.vitorias_desafiado ? 'game-result-team-win' : ''">
+                {{ desafio.vitorias_desafiante }}    
+                <span class="game-result-team-label game-result-team-label-top" >Win</span>       
+              </div>
+              <div class="game-result-score-divider">
+                <svg x="0px" y="0px" width="7px" height="21px" viewBox="0 0 7 21" enable-background="new 0 0 7 21" xml:space="preserve">
+                  <g>
+                    <circle cx="3.5" cy="3.5" r="3"></circle>
+                    <path d="M3.5,1C4.879,1,6,2.122,6,3.5S4.879,6,3.5,6S1,4.878,1,3.5S2.122,1,3.5,1 M3.5,0C1.567,0,0,1.567,0,3.5S1.567,7,3.5,7      S7,5.433,7,3.5S5.433,0,3.5,0L3.5,0z"></path>
+                  </g>
+                  <g>
+                    <circle cx="3.695" cy="17.5" r="3"></circle>
+                    <path d="M3.695,15c1.378,0,2.5,1.122,2.5,2.5S5.073,20,3.695,20s-2.5-1.122-2.5-2.5S2.316,15,3.695,15 M3.695,14      c-1.933,0-3.5,1.567-3.5,3.5s1.567,3.5,3.5,3.5s3.5-1.567,3.5-3.5S5.628,14,3.695,14L3.695,14z"></path>
+                  </g>
+                </svg>
+              </div>
+              <div class="game-result-score"
+                    [ngClass]="desafio.vitorias_desafiante < desafio.vitorias_desafiado ? 'game-result-team-win' : ''">
+                  {{ desafio.vitorias_desafiado }}  
+                  <span class="game-result-team-label game-result-team-label-top" >Win</span>         
+              </div>
+            </div>         
+        </ng-container>
+
+        <ng-container *ngIf=" desafio.pontuacao_desafiante">
+            <div class="game-result-score-wrap" *ngFor="let number of [0,1,2]">
+              <div class="game-result-score" >
+                {{ desafio.pontuacao_desafiante[number].pontos }}           
+              </div>
+              <div class="game-result-score-divider">
+                <svg x="0px" y="0px" width="7px" height="21px" viewBox="0 0 7 21" enable-background="new 0 0 7 21" xml:space="preserve">
+                  <g>
+                    <circle cx="3.5" cy="3.5" r="3"></circle>
+                    <path d="M3.5,1C4.879,1,6,2.122,6,3.5S4.879,6,3.5,6S1,4.878,1,3.5S2.122,1,3.5,1 M3.5,0C1.567,0,0,1.567,0,3.5S1.567,7,3.5,7      S7,5.433,7,3.5S5.433,0,3.5,0L3.5,0z"></path>
+                  </g>
+                  <g>
+                    <circle cx="3.695" cy="17.5" r="3"></circle>
+                    <path d="M3.695,15c1.378,0,2.5,1.122,2.5,2.5S5.073,20,3.695,20s-2.5-1.122-2.5-2.5S2.316,15,3.695,15 M3.695,14      c-1.933,0-3.5,1.567-3.5,3.5s1.567,3.5,3.5,3.5s3.5-1.567,3.5-3.5S5.628,14,3.695,14L3.695,14z"></path>
+                  </g>
+                </svg>
+              </div>
+              <div class="game-result-score">
+                  {{ desafio.pontuacao_desafiado[number].pontos }}           
+              </div>
+            </div>         
+        </ng-container>
+
+        <ng-container *ngIf=" desafio.mano">
+           <hr>
+           <div class="mano">Mano a Mano</div>
+            <div class="game-result-score-wrap">
+              <div class="game-result-score" >
+                {{ desafio.mano.desafiante }}           
+              </div>
+              <div class="game-result-score-divider">
+                <svg x="0px" y="0px" width="7px" height="21px" viewBox="0 0 7 21" enable-background="new 0 0 7 21" xml:space="preserve">
+                  <g>
+                    <circle cx="3.5" cy="3.5" r="3"></circle>
+                    <path d="M3.5,1C4.879,1,6,2.122,6,3.5S4.879,6,3.5,6S1,4.878,1,3.5S2.122,1,3.5,1 M3.5,0C1.567,0,0,1.567,0,3.5S1.567,7,3.5,7      S7,5.433,7,3.5S5.433,0,3.5,0L3.5,0z"></path>
+                  </g>
+                  <g>
+                    <circle cx="3.695" cy="17.5" r="3"></circle>
+                    <path d="M3.695,15c1.378,0,2.5,1.122,2.5,2.5S5.073,20,3.695,20s-2.5-1.122-2.5-2.5S2.316,15,3.695,15 M3.695,14      c-1.933,0-3.5,1.567-3.5,3.5s1.567,3.5,3.5,3.5s3.5-1.567,3.5-3.5S5.628,14,3.695,14L3.695,14z"></path>
+                  </g>
+                </svg>
+              </div>
+              <div class="game-result-score">
+                  {{ desafio.mano.desafiado }}           
+              </div>
+            </div>         
+        </ng-container>
+        
+        
+      </div>
+      <a class="game-result-team game-result-team-second" [routerLink]="'/perfil/'+desafio.desafiado.id">
+        <figure class="game-result-team-figure game-result-team-figure-big"><img src="{{ desafio.desafiado.avatar_img }}" alt="" width="75" height="75">
+        </figure>
+        <div class="game-result-team-name">{{ desafio.desafiado.nome }}</div>
+        <div class="game-result-team-country">{{ desafio.desafiado.classe_nome }}</div>
+      </a>
+    </div>
+    <div class="game-result-footer">
+      <ul class="game-result-details">               
+        <li>
+          <time>{{ desafio.dataDesafio }}</time>
+        </li>
+      </ul>
+    </div>
+  </article>
+     
